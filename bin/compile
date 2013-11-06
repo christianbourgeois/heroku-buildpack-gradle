@@ -10,7 +10,7 @@ OPT_DIR=$(cd $BIN_DIR/../opt; pwd)
 BUILD_DIR=$1
 CACHE_DIR=$2
 
-GRADLE_DIST="gradle-1.7"
+GRADLE_DIST="gradle-1.8"
 GRADLE_TASK="stage"
 
 curl --silent --location http://heroku-jvm-common.s3.amazonaws.com/jvm-buildpack-common.tar.gz | tar xz
@@ -35,6 +35,7 @@ fi
 export GRADLE_USER_HOME=$CACHE_DIR
 
 if [ -f $BUILD_DIR/gradlew ] ; then
+  chmod u+rx ./gradlew
   BUILDCMD="./gradlew"
 else
   if [ ! -d $CACHE_DIR/$GRADLE_DIST ] ; then
